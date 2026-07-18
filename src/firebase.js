@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider,setPersistence, browserLocalPersistence } f
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAgmu6zAHo-8IY0FzlMI3zKDJMPWs32oYg",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "todo-app-107c7.firebaseapp.com",
   projectId: "todo-app-107c7",
   storageBucket: "todo-app-107c7.firebasestorage.app",

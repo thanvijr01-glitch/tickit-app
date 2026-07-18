@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth, googleProvider } from "./firebase";
-import { signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
 import Wallet from "./Wallet";
@@ -18,15 +18,13 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    getRedirectResult(auth).catch((error)=>{
-      console.log("Redirect login error:",error);
-    });
+    
     return () => unsubscribe();
   }, []);
 
   const handleLogin = async () => {
     try {
-      await signInWithRedirect(auth, googleProvider);
+      await signInWithPopup(auth, googleProvider);
     } catch (error) {
       console.error("Login failed:", error.message);
     }
